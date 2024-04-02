@@ -265,8 +265,8 @@ $(document).on('update_miners', () => {
         .append(formatSeconds(time_to_share))
       );
     }*/
-    const totalPayout = Object.values(current_payouts).reduce((acc, val) => acc + parseFloat(val || 0), 0);
-
+    const totalHash = Object.values(local_stats.miner_hash_rates).reduce((acc, val) => acc + parseFloat(val || 0), 0);
+    const totalNetHash = global_stats.pool_hash_rate;
 /*$('.text-right').each(function() {
     const payoutValue = parseFloat($(this).text());
     if (!isNaN(payoutValue)) {
@@ -277,7 +277,9 @@ $(document).on('update_miners', () => {
 
     const payoutAddress = address.split('.')[0];
     const payout = current_payouts[payoutAddress] || 0;
-    const payoutValue = (payout / totalPayout) * 10000;
+    
+
+    const payoutValue = (hashrate / totalHash) * 10000;
 
     if (payout) {
       const td = $('<td/>').attr('class', 'text-right')
