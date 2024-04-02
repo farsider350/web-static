@@ -265,19 +265,30 @@ $(document).on('update_miners', () => {
         .append(formatSeconds(time_to_share))
       );
     }*/
+    const totalPayout = Object.values(current_payouts).reduce((acc, val) => acc + parseFloat(val || 0), 0);
+
+/*$('.text-right').each(function() {
+    const payoutValue = parseFloat($(this).text());
+    if (!isNaN(payoutValue)) {
+        const percentage = (payoutValue / totalPayout) * 10000;
+        $(this).text(percentage.toFixed(2) + 'DOGE');
+    }
+});*/
+
     const payoutAddress = address.split('.')[0];
     const payout = current_payouts[payoutAddress] || 0;
+    const payoutValue = (payout / totalPayout) * 10000;
 
     if (payout) {
       const td = $('<td/>').attr('class', 'text-right')
-        .text(parseFloat(payout).toFixed(8))
-        .append(' ').append(currency.clone());
+        .text(parseFloat(payout).toFixed(6) + ' LTC ' + payoutValue.toFixed(0) + ' DOGE')
       tr.append(td);
     }
     else {
       tr.append($('<td/>').attr('class', 'text-right')
         .append($('<i/>').append('no shares yet')));
     }
+    
 
     $('#active_miners').append(tr);
   });
