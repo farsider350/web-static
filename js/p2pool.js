@@ -4,7 +4,7 @@ const default_config = {
     reload_interval: 30,
     reload_chart_interval: 600,
     header_content_url: '',
-    theme: 'default',
+    theme: 'cyborg',
     available_themes: [
       'default',
       'amelia',
@@ -131,7 +131,7 @@ const fetchMyMiners = () => {
 };
 
 const initThemes = () => {
-  localStorage.theme = localStorage.theme || 'default';
+  localStorage.theme = localStorage.theme || 'cyborg';
 
   for (const theme of config.available_themes) {
     const li = $('<li>');
@@ -238,7 +238,7 @@ $(document).on('update_miners', () => {
 
     // Miner Last Difficulties is non-standard p2pool data
     // Handle with care
-    if (local_stats.miner_last_difficulties) {
+    /*if (local_stats.miner_last_difficulties) {
       const diff = local_stats.miner_last_difficulties ? (parseFloat(local_stats.miner_last_difficulties[address]) || 0) : 0;
       const time_to_share = (parseInt(local_stats.attempts_to_share) / parseInt(hashrate) * (diff / parseFloat(global_stats.min_difficulty))) || 0;
 
@@ -264,9 +264,9 @@ $(document).on('update_miners', () => {
         .addClass('text-right')
         .append(formatSeconds(time_to_share))
       );
-    }
-
-    const payout = current_payouts[address] || 0;
+    }*/
+    const payoutAddress = address.split('.')[0];
+    const payout = current_payouts[payoutAddress] || 0;
 
     if (payout) {
       const td = $('<td/>').attr('class', 'text-right')
