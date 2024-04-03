@@ -279,11 +279,12 @@ $(document).on('update_miners', () => {
     const payout = current_payouts[payoutAddress] || 0;
     
 
-    const payoutValue = (hashrate / totalHash) * 10000;
+    const localValue = (hashrate / totalHash) * local_stats.block_value;
+    const payoutValue = (payout / localValue) * 10000;
 
     if (payout) {
       const td = $('<td/>').attr('class', 'text-right')
-        .text(parseFloat(payout).toFixed(6) + ' LTC ' + payoutValue.toFixed(0) + ' DOGE')
+        .text(parseFloat(payout).toFixed(6) + ' LTC ' + payoutValue.toFixed(2) + ' DOGE ' + payoutValue.toFixed(0) + ' DINGO')
       tr.append(td);
     }
     else {
@@ -419,6 +420,9 @@ $(document).on('update_miners', () => {
   const attempts_to_block = parseInt(local_stats.attempts_to_block || 0);
   const time_to_block = attempts_to_block / pool_hash_rate;
   $('#expected_time_to_block').text(formatSeconds(time_to_block));
+  const time_to_local_block = attempts_to_block / local_hashrate;
+  const time_to_doge = time_to_local_block / 2;
+  $('#expected_time_to_doge').text(formatSeconds(time_to_doge));
 });
 
 // Fills the recent block table
