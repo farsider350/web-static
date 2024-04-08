@@ -3,7 +3,7 @@ let config = {
     '1MzFr1eKzLEC1',
     'LSRfZJf75Mtwz3'
   ],
-  host: 'http://ltcmint.autradex.systems:9327/',
+  host: 'http://ltcmint.autradex.systems:5025/',
   // data reload interval in seconds
   reload_interval: 30,
   // chart reload interval in seconds
