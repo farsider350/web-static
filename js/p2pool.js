@@ -421,7 +421,7 @@ $(document).on('update_miners', () => {
   const time_to_block = attempts_to_block / pool_hash_rate;
   $('#expected_time_to_block').text(formatSeconds(time_to_block));
   const time_to_local_block = attempts_to_block / local_hashrate;
-  const time_to_doge = time_to_local_block / 2;
+  const time_to_doge = time_to_local_block * 20;
   $('#expected_time_to_doge').text(formatSeconds(time_to_doge));
 });
 
