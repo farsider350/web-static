@@ -284,7 +284,7 @@ $(document).on('update_miners', () => {
 
     if (payout) {
       const td = $('<td/>').attr('class', 'text-right')
-        .text(parseFloat(payout).toFixed(6) + ' LTC ' + payoutValue.toFixed(2) + ' DOGE ' + payoutValue.toFixed(0) + ' DINGO')
+        .text(parseFloat(payout).toFixed(6) + ' DGB ' + payoutValue.toFixed(2) + ' DOGE ' + payoutValue.toFixed(0) + ' DINGO')
       tr.append(td);
     }
     else {
