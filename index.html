@@ -93,6 +93,35 @@
       <section class="panel panel-default clearfix">
         <div class="panel-heading">
           <h4>Status</h4>
+          <p>Dogecoin</p><p id="dogecoin-price"></p>
+
+    <script>
+        // Function to fetch cryptocurrency price
+        function fetchCryptoPrice() {
+            // API URL for Dogecoin price from CoinGecko
+            const apiUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=dogecoin&vs_currencies=usd';
+
+            // Fetch data from the API
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Extract Bitcoin price from the API response
+                    const dogecoinPrice = data.dogecoin.usd;
+
+                    // Display the price on the webpage
+                    document.getElementById('dogecoin-price').innerText = `$${dogecoinPrice}`;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+
+        // Call the function initially
+        fetchCryptoPrice();
+
+        // Update price every 30 seconds (you can adjust this interval as needed)
+        setInterval(fetchCryptoPrice, 30000);
+    </script>
         </div>
         <ul class="list-group status rate_info pull-left">
           <li class="list-group-item">Global Pool Hashrate:
