@@ -385,6 +385,21 @@ $(document).on('update_miners', () => {
   $('#peers_out').text(local_stats.peers.outgoing);
   $('#node_uptime').text(formatSeconds(local_stats.uptime));
 
+  // Get the current date
+  var currentDate = new Date();
+
+  // Set the target date (April 3, 2024)
+  var targetDate = new Date(2024, 3, 3); // Note: Months are zero-based in JavaScript, so 3 represents April
+
+  // Calculate the difference in milliseconds between the current date and the target date
+  var timeDifference = currentDate - targetDate;
+
+  // Convert milliseconds to seconds
+  var uptimeInSeconds = Math.abs(timeDifference) / 1000;
+
+  // Format the uptime
+  $('#total_uptime').text(formatSeconds(uptimeInSeconds));
+
   if (local_stats.warnings.length > 0) {
     $('#node_alerts').empty();
 
