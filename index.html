@@ -19,6 +19,13 @@
 
     <!-- Custom styles for this template -->
     <link href="css/p2pool.css" rel="stylesheet">
+    <style>
+    .row {
+        display: inline-block; /* Or use display: inline-flex; */
+        margin-right: 20px; /* Adjust the spacing between rows */
+        vertical-align: top; /* Align rows at the top */
+    }
+</style>
   </head>
 
   <body>
@@ -92,14 +99,27 @@
 
       <section class="panel panel-default clearfix">
         <div class="panel-heading">
-          <h4>Status</h4>
-          <p>Dogecoin</p><p id="dogecoin-price"></p>
+          <div class="row">
+    <h4>Status</h4>
+    <p>Dogecoin</p>
+    <p id="dogecoin-price"></p>
+</div>
+<div class="row">
+    <p>Dingocoin</p>
+    <p id="dingocoin-price"></p>
+</div>
+<div class="row">
+    <p>Digibyte</p>
+    <p id="digibyte-price"></p>
+</div>
 
     <script>
         // Function to fetch cryptocurrency price
         function fetchCryptoPrice() {
             // API URL for Dogecoin price from CoinGecko
             const apiUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=dogecoin&vs_currencies=usd';
+            const apiUrlDingo = 'https://api.coingecko.com/api/v3/simple/price?ids=dingocoin&vs_currencies=usd';
+            const apiUrlDgb = 'https://api.coingecko.com/api/v3/simple/price?ids=digibyte&vs_currencies=usd';
 
             // Fetch data from the API
             fetch(apiUrl)
@@ -110,6 +130,32 @@
 
                     // Display the price on the webpage
                     document.getElementById('dogecoin-price').innerText = `$${dogecoinPrice}`;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+            // Fetch data from the API
+            fetch(apiUrlDingo)
+                .then(response => response.json())
+                .then(data => {
+                    // Extract Bitcoin price from the API response
+                    const dingocoinPrice = data.dingocoin.usd;
+
+                    // Display the price on the webpage
+                    document.getElementById('dingocoin-price').innerText = `$${dingocoinPrice}`;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+            // Fetch data from the API
+            fetch(apiUrlDgb)
+                .then(response => response.json())
+                .then(data => {
+                    // Extract Bitcoin price from the API response
+                    const digibytePrice = data.digibyte.usd;
+
+                    // Display the price on the webpage
+                    document.getElementById('digibyte-price').innerText = `$${digibytePrice}`;
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
