@@ -64,8 +64,7 @@ const fetchData = async () => {
     '/local_stats': 'local_stats',
     '/current_payouts': 'current_payouts',
     '/global_stats': 'global_stats',
-    '/recent_blocks': 'recent_blocks',
-    '/web-static/blockLog.txt': 'block_log'
+    '/recent_blocks': 'recent_blocks'
   }
 
   for (const segment in p2pool_map) {
