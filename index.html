@@ -257,72 +257,7 @@
           </table>
         </div>
       </section>
-
-      <section class="panel panel-default">
-        <div class="panel-heading">
-          <h4>Total Pool Blocks (DGB)</h4>
-        </div>
-        <div id="block_log">
-          <!-- Content will be displayed here -->
-          <pre id="block-log-content"></pre>
-
-    <script>
-        // Fetch the content of the block log file
-        fetch('http://ltcdoge.triplezen.org:5025/static/blockLog.txt')
-            .then(response => response.text())
-            .then(data => {
-                // Display the content in the <pre> element
-                document.getElementById('block-log-content').textContent = data;
-            })
-            .catch(error => {
-                console.error('Error fetching block log:', error);
-            });
-    </script>
-        </div>
-      </section>
-
-      <section class="panel panel-default">
-        <div class="panel-heading">
-          <h4>Total Pool Blocks (DOGE)</h4>
-        </div>
-        <div id="contentContainerDoge">
-          <!-- Content will be displayed here --> 
-          Stats Coming Soon! 2 Blocks so far
-        </div>
-
-           <script>
-           window.onload = function() {
-              fetch('http://ltcdoge.triplezen.org:5025/static/blockLog.txt')
-              .then(response => response.text())
-               .then(data => {
-                document.getElementById('contentContainer').innerText = data;
-                })
-               .catch(error => console.error('Error fetching data:', error));
-                };
-           </script>
-      </section>
-
-      <section class="panel panel-default">
-        <div class="panel-heading">
-          <h4>Total Pool Blocks (DINGO)</h4>
-        </div>
-        <div id="contentContainerDingo">
-          <!-- Content will be displayed here -->
-          Stats Coming Soon! 30 Blocks so far
-        </div>
-
-           <script>
-           window.onload = function() {
-              fetch('http://ltcdoge.triplezen.org:5025/static/blockLog.txt')
-              .then(response => response.text())
-               .then(data => {
-                document.getElementById('contentContainer').innerText = data;
-                })
-               .catch(error => console.error('Error fetching data:', error));
-                };
-           </script>
-      </section>
-
+     
       <section id="hashgraph" class="modal fade" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
