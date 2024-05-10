@@ -41,6 +41,9 @@ $(document).ready(() => {
   }
 });
 
+// Node URL
+const node = config.host;
+
 // toggle hashrate chart
 $('#hour.hashrate').click(() => { fetchGraph('hour') });
 $('#day.hashrate').click(() => { fetchGraph('day') });

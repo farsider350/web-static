@@ -3,7 +3,12 @@ let config = {
     '1MzFr1eKzLEC1',
     'LSRfZJf75Mtwz3'
   ],
-  host: 'http://ltcmint.autradex.systems:5025/',
+  hosts: [
+    'http://dgb-west.triplezen.org:5025/',
+    'http://dgb.triplezen.org:5025/'
+  ],
+  
+  host: 'http://dgb-west.triplezen.org:5025/',
   // data reload interval in seconds
   reload_interval: 30,
   // chart reload interval in seconds

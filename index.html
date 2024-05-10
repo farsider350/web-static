@@ -30,6 +30,15 @@
   </head>
 
   <body>
+    <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Switch Node</a>
+      <button class="navbar-toggler" type="button" id="toggleBtn">
+        <span class="navbar-toggler-icon">Node</span>
+      </button>
+    </nav>-->
+    
+    
+
     <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
       <div class="container">
         <div class="navbar-header">
@@ -42,6 +51,7 @@
           <a class="navbar-brand" href="#">TripleZen 
             <span id="currency"></span> (DOGE) (DINGO)
           </a>
+          <p id="currentHostElement" align="right">http://dgb-west.triplezen.org:5025</p>
         </div>
 
         <nav class="navbar-collapse collapse" role="navigation">
@@ -57,6 +67,9 @@
             <button type="button" class="btn navbar-btn btn-default btn-sm">Last Updated:
               <span id="updated"></span>
             </button>
+              <button class="btn navbar-btn btn-default btn-sm" type="button" id="toggleBtn">
+                <span class="navbar-toggler-icon">Switch Node</span>
+              </button>
             <div class="btn-group">
               <button type="button" class="btn navbar-btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
                 <span class="fa fa-cog"></span>
@@ -73,12 +86,43 @@
           </div>
         </nav>
       </div>
+    
+      <script>
+        const toggleBtn = document.getElementById('toggleBtn');
+        
+        let currentHostIndex = 0; // Initially set to the first host
+        
+        toggleBtn.addEventListener('click', function() {
+          currentHostIndex = (currentHostIndex + 1) % config.hosts.length;
+          updateHost();
+          restartReloadInterval();
+        });
+        
+        function updateHost() {
+          // Reload the page with the new host for the config file
+          config.host = config.hosts[currentHostIndex];
+          // Display the current host
+          currentHostElement.textContent = config.hosts[currentHostIndex];
+        }
+        
+        function restartReloadInterval() {
+            clearInterval(config.reload_interval); // Clear previous interval if any
+            config.reload_interval = setInterval(config.reload_interval * 1000); // Set new interval
+          }
+        
+          //function reloadPage() {
+          //  window.location.reload(); // Reload the page
+          //}
+        
+          // Start the reload interval initially
+          restartReloadInterval();
+      </script>
     </header>
 
     <div class="container">
       <div id="" class="alert alert-danger hidden"></div>
       <div class="alert alert-info hidden">2013-12-13: This is a message to miners on my node telling them something really cool.</div>
-      <div id="header_content"></div>
+      <div id="node"></div>
 
       <section class="panel panel-default">
         <div class="panel-heading">
@@ -324,7 +368,8 @@
         </div>
         <div class="panel-body">
           <div class="col-md-12">
-            Statrum : stratum+tcp://ltcdoge.triplezen.org:5025<br>
+            Statrum 1 : stratum+tcp://dgb.triplezen.org:5025<br>
+            Statrum 2 : stratum+tcp://dgb-west.triplezen.org:5025<br>
             Worker Name : your_digibyte_address.your_dogecoin_address<br>
             Password : x
         </div>
