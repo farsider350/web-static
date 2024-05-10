@@ -16,7 +16,7 @@ let config = {
   // HTML to load at top of page
   header_content_url: 'http://localhost:8888/custom_content.html',
   // Default Theme
-  theme: 'cyborg',
+  theme: 'readable',
   // Available Themes
   available_themes: [
     'default',
