@@ -4,11 +4,10 @@ let config = {
     'LSRfZJf75Mtwz3'
   ],
   hosts: [
-    'http://dgb-west.triplezen.org:5025/',
     'http://dgb.triplezen.org:5025/'
   ],
   
-  host: 'http://dgb-west.triplezen.org:5025/',
+  host: 'http://dgb.triplezen.org:5025/',
   // data reload interval in seconds
   reload_interval: 30,
   // chart reload interval in seconds
