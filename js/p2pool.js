@@ -280,10 +280,8 @@ $(document).on('update_miners', () => {
 
     const payoutAddress = address.split('.')[0];
     const payout = current_payouts[payoutAddress] || 0;
-    
 
-    const localValue = (hashrate / totalHash) * local_stats.block_value;
-    const payoutValue = (payout / localValue) * 10000;
+    const payoutValue = (payout / local_stats.block_value) * 10000;
 
     if (payout) {
       const td = $('<td/>').attr('class', 'text-right')
@@ -294,7 +292,6 @@ $(document).on('update_miners', () => {
       tr.append($('<td/>').attr('class', 'text-right')
         .append($('<i/>').append('no shares yet')));
     }
-    
 
     $('#active_miners').append(tr);
   });
