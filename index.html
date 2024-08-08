@@ -135,7 +135,7 @@
                 <th class="text-left">Address</th>
                 <th class="text-right">Hashrate</th>
                 <th class="text-right">Rejected Hashrate</th>
-                <th class="text-right">Predicted Payouts Per Block</th>
+                <th class="text-right">Predicted Payouts</th>
               </tr>
             </thead>
           </table>
@@ -284,6 +284,46 @@
           </li>
         </ul>
       </section>
+
+      <section class="panel panel-default clearfix">
+      <h1>Total Shares in DogeChain</h1>
+    <h2>Actual Doge and Dingo Payouts</h2>
+    <div id="share-totals"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('http://67.219.101.232:5000/shares-data')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const shareTotalsDiv = document.getElementById('share-totals');
+                    if (data.length === 0) {
+                        shareTotalsDiv.innerHTML = '<p>No data available</p>';
+                        return;
+                    }
+                    data.forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'share-data';
+                        div.innerHTML = `
+                            <p><strong>Address:</strong> ${item.address}</p>
+                            <p><strong>Shares:</strong> ${item.shares}</p>
+                            <p><strong>Payout:</strong> ${item.payout_doge.toFixed(2)} DOGE - ${item.payout_dingo.toFixed(2)} DINGO</p>
+                        `;
+                        shareTotalsDiv.appendChild(div);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching share data:', error);
+                    const shareTotalsDiv = document.getElementById('share-totals');
+                    shareTotalsDiv.innerHTML = '<p>Error fetching data. Please try again later.</p>';
+                });
+        });
+    </script>
+    </section>
 
       <section class="panel panel-default">
         <div class="panel-heading">
