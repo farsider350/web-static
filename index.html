@@ -1,433 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico">
-
     <title>TripleZen DGB DOGE DINGO P2pool</title>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="css/bootstrap-sortable.css">
-    <link id="theme" rel="stylesheet" href="#">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="js/config.js"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <!-- Custom styles for this template -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Custom styles -->
     <link href="css/p2pool.css" rel="stylesheet">
     <style>
-    .row {
-        display: inline-block; /* Or use display: inline-flex; */
-        margin-right: 20px; /* Adjust the spacing between rows */
-        vertical-align: top; /* Align rows at the top */
-        margin: 0 20px; /* Margin on the sides */
-    }
-</style>
-  </head>
-
-  <body>
-    <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Switch Node</a>
-      <button class="navbar-toggler" type="button" id="toggleBtn">
-        <span class="navbar-toggler-icon">Node</span>
-      </button>
-    </nav>-->
-    
-    
-
-    <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
-      <div class="container">
-        <div class="navbar-header">
-          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">TripleZen 
-            <span id="currency"></span> (DOGE) (DINGO)
-          </a>
-          <p id="currentHostElement" align="right">http://dgb.triplezen.org:5025</p>
-        </div>
-
-        <nav class="navbar-collapse collapse" role="navigation">
-          <div class="navbar-right btn-group">
-            <div class="btn-group">
-              <button type="button" class="btn navbar-btn btn-info btn-sm hidden-sm hidden-xs" data-toggle="modal" data-target="#hashgraph">Hashrate Graph
-                <span class="caret"></span>
-              </button>
-            </div>
-            <button type="button" class="btn navbar-btn btn-default btn-sm">Last Block Found:
-              <span id="last_block"></span>
-            </button>
-            <button type="button" class="btn navbar-btn btn-default btn-sm">Last Updated:
-              <span id="updated"></span>
-            </button>
-              <button class="btn navbar-btn btn-default btn-sm" type="button" id="toggleBtn">
-                <span class="navbar-toggler-icon">Switch Node</span>
-              </button>
-            <div class="btn-group">
-              <button type="button" class="btn navbar-btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                <span class="fa fa-cog"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li data-toggle="modal" data-target="#setminers">
-                  <a href="#">Set My Miners</a>
-                </li>
-                <li data-toggle="modal" data-target="#settheme">
-                  <a href="#">Change Theme</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
-    
-      <script>
-        const toggleBtn = document.getElementById('toggleBtn');
-        
-        let currentHostIndex = 0; // Initially set to the first host
-        
-        toggleBtn.addEventListener('click', function() {
-          currentHostIndex = (currentHostIndex + 1) % config.hosts.length;
-          updateHost();
-          restartReloadInterval();
-        });
-        
-        function updateHost() {
-          // Reload the page with the new host for the config file
-          config.host = config.hosts[currentHostIndex];
-          // Display the current host
-          currentHostElement.textContent = config.hosts[currentHostIndex];
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
         }
-        
-        function restartReloadInterval() {
-            clearInterval(config.reload_interval); // Clear previous interval if any
-            config.reload_interval = setInterval(config.reload_interval * 1000); // Set new interval
-          }
-        
-          //function reloadPage() {
-          //  window.location.reload(); // Reload the page
-          //}
-        
-          // Start the reload interval initially
-          restartReloadInterval();
-      </script>
+
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-brand {
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+
+        .panel {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .panel-heading h4 {
+            font-weight: 500;
+        }
+
+        .panel-heading {
+            background-color: #343a40;
+            color: #ffffff;
+            border-radius: 10px 10px 0 0;
+            padding: 15px;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+        }
+
+        .list-group-item {
+            border: 0;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .footer-links a:hover {
+            color: #adb5bd;
+        }
+
+        .btn-custom {
+            background: linear-gradient(45deg, #007bff, #17a2b8);
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-custom:hover {
+            background: linear-gradient(45deg, #0069d9, #138496);
+        }
+
+        .row p {
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        #chart-buttons button {
+            margin: 0 5px 10px 0;
+            font-weight: 500;
+        }
+
+        #share-totals .share-data {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .dropdown-menu a {
+            color: #343a40;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">TripleZen <span id="currency"></span> (DOGE) (DINGO)</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <button class="btn btn-custom btn-sm" data-bs-toggle="modal" data-bs-target="#hashgraph">Hashrate Graph</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-custom btn-sm">Last Block Found: <span id="last_block"></span></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-custom btn-sm">Last Updated: <span id="updated"></span></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-custom btn-sm" id="toggleBtn">Switch Node</button>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="settingsDropdown" role="button" data-bs-toggle="dropdown">Settings</a>
+                        <ul class="dropdown-menu" aria-labelledby="settingsDropdown">
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#setminers">Set My Miners</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#settheme">Change Theme</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-      <div id="" class="alert alert-danger hidden"></div>
-      <div class="alert alert-info hidden">2013-12-13: This is a message to miners on my node telling them something really cool.</div>
-      <div id="node"></div>
+    <div class="container mt-5">
+        <div class="alert alert-danger d-none"></div>
+        <div class="alert alert-info d-none">2013-12-13: This is a message to miners on my node telling them something really cool.</div>
 
-      <section class="panel panel-default">
-        <div class="panel-heading">
-          <h4>Active Miners On This Node</h4>
-        </div>
-        <div class="table-responsive">
-          <table id="active_miners" class="table table-hover sortable">
-            <thead>
-              <tr>
-                <th class="text-left">Address</th>
-                <th class="text-right">Hashrate</th>
-                <th class="text-right">Rejected Hashrate</th>
-                <th class="text-right">Predicted Payouts</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </section>
-
-      <section class="panel panel-default clearfix">
-        <div class="panel-heading">
-          <h4>Status</h4>
-          <div class="row">
-    <p>Dogecoin</p>
-    <p id="dogecoin-price"></p>
-</div>
-<div class="row">
-    <p>Dingocoin</p>
-    <p id="dingocoin-price"></p>
-</div>
-<div class="row">
-    <p>Digibyte</p>
-    <p id="digibyte-price"></p>
-</div>
-
-    <script>
-        // Function to fetch cryptocurrency price
-        function fetchCryptoPrice() {
-            // API URL for Dogecoin price from CoinGecko
-            const apiUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=dogecoin&vs_currencies=usd';
-            const apiUrlDingo = 'https://api.coingecko.com/api/v3/simple/price?ids=dingocoin&vs_currencies=usd';
-            const apiUrlDgb = 'https://api.coingecko.com/api/v3/simple/price?ids=digibyte&vs_currencies=usd';
-
-            // Fetch data from the API
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    // Extract Bitcoin price from the API response
-                    const dogecoinPrice = data.dogecoin.usd;
-
-                    // Display the price on the webpage
-                    document.getElementById('dogecoin-price').innerText = `$${dogecoinPrice}`;
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
-            // Fetch data from the API
-            fetch(apiUrlDingo)
-                .then(response => response.json())
-                .then(data => {
-                    // Extract Bitcoin price from the API response
-                    const dingocoinPrice = data.dingocoin.usd;
-
-                    // Display the price on the webpage
-                    document.getElementById('dingocoin-price').innerText = `$${dingocoinPrice}`;
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
-            // Fetch data from the API
-            fetch(apiUrlDgb)
-                .then(response => response.json())
-                .then(data => {
-                    // Extract Bitcoin price from the API response
-                    const digibytePrice = data.digibyte.usd;
-
-                    // Display the price on the webpage
-                    document.getElementById('digibyte-price').innerText = `$${digibytePrice}`;
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
-        }
-
-        // Call the function initially
-        fetchCryptoPrice();
-
-        // Update price every 30 seconds (you can adjust this interval as needed)
-        setInterval(fetchCryptoPrice, 30000);
-    </script>
-        </div>
-        <ul class="list-group status rate_info pull-left">
-          <li class="list-group-item">Global Pool Hashrate:
-            <span id="global_rate"></span>
-          </li>
-          <li class="list-group-item">Local Pool Hashrate:
-            <span id="local_rate"></span>
-          </li>
-          <li class="list-group-item">Local Pool Efficiency:
-            <span id="local_efficiency"></span>
-          </li>
-          <li class="list-group-item">Current Block Value:
-            <span id="block_value"></span>
-          </li>
-        </ul>
-        <ul class="list-group status share_info pull-right">
-          <li class="list-group-item">Local Shares:
-            <span id="shares"></span>
-          </li>
-          <li class="list-group-item">Share Difficulty:
-            <span id="share_difficulty"></span>
-          </li>
-          <li class="list-group-item">Expected Time to Share:
-            <span id="expected_time_to_share"></span>
-          </li>
-          <li class="list-group-item">Expected Time to <span id="currency"></span> Block:
-            <span id="expected_time_to_block"></span>
-          </li>
-          <li class="list-group-item">Expected Time to Doge Block:
-            <span id="expected_time_to_doge"></span>
-          </li>
-        </ul>
-      </section>
-
-      <section class="panel panel-default clearfix">
-        <div class="panel-heading">
-          <h4>Node Information</h4>
-        </div>
-        <ul class="list-group status pull-left">
-          <li class="list-group-item">
-            Node Peers:
-            <span>
-              <i class="fa fa-sign-in fa-fw" title="Inbound"></i>
-              <span id="peers_in"></span>
-              /
-              <i class="fa fa-sign-out fa-fw" title="Outbound"></i>
-              <span id="peers_out"></span>
-            </span>
-          </li>
-          <li class="list-group-item">Node p2pool Version:
-            <span id="p2pool_version"></span>
-          </li>
-          <li class="list-group-item">Node Fee:
-            <span id="node_fee"></span>
-          </li>
-        </ul>
-        <ul class="list-group status pull-right">
-          <li class="list-group-item">Local Node Uptime:
-            <span id="node_uptime"></span>
-          </li>
-          <li class="list-group-item">Total Pool Uptime:
-            <span id="total_uptime"></span>
-          </li>
-          <li class="list-group-item">Protocol Version:
-            <span id="protocol_version"></span>
-          </li>
-          <li class="list-group-item">Node Donation:
-            <span id="node_donation"></span>
-          </li>
-        </ul>
-      </section>
-
-      <section class="panel panel-default clearfix">
-      <h1>Total Shares in DogeChain</h1>
-    <h2>Actual Doge and Dingo Payouts</h2>
-    <div id="share-totals"></div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('http://67.219.101.232:5000/shares-data')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const shareTotalsDiv = document.getElementById('share-totals');
-                    if (data.length === 0) {
-                        shareTotalsDiv.innerHTML = '<p>No data available</p>';
-                        return;
-                    }
-                    data.forEach(item => {
-                        const div = document.createElement('div');
-                        div.className = 'share-data';
-                        div.innerHTML = `
-                            <p><strong>Address:</strong> ${item.address}</p>
-                            <p><strong>Shares:</strong> ${item.shares}</p>
-                            <p><strong>Payout:</strong> ${item.payout_doge.toFixed(2)} DOGE - ${item.payout_dingo.toFixed(2)} DINGO</p>
-                        `;
-                        shareTotalsDiv.appendChild(div);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error fetching share data:', error);
-                    const shareTotalsDiv = document.getElementById('share-totals');
-                    shareTotalsDiv.innerHTML = '<p>Error fetching data. Please try again later.</p>';
-                });
-        });
-    </script>
-    </section>
-
-      <section class="panel panel-default">
-        <div class="panel-heading">
-          <h4>Recent Digibyte Blocks</h4>
-          <h5>See <a href="https://discord.gg/yGC2cvaVZN">Discord</a> for Doge and Dingo Totals</h5>
-        </div>
-        <div class="recent_blocks table-responsive">
-          <table id="recent_blocks" class="table table-hover">
-            <thead>
-              <tr>
-                <th>When</th>
-                <th>Date/Time</th>
-                <th>Number</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </section>
-     
-      <section id="hashgraph" class="modal fade" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Local Hashrate Graph</h4>
+        <section class="panel">
+            <div class="panel-heading">
+                <h4>Active Miners On This Node</h4>
             </div>
-            <div class="modal-body">
-              <div id="chart-buttons">
-                <button id="hour" type="button" class="hashrate btn btn-info">Hour</button>
-                <button id="day" type="button" class="hashrate btn btn-info">Day</button>
-                <button id="week" type="button" class="hashrate btn btn-info">Week</button>
-                <button id="month" type="button" class="hashrate btn btn-info">Month</button>
-                <button id="year" type="button" class="hashrate btn btn-info">Year</button>
-              </div>
-              <div id="chart"></div>
+            <div class="table-responsive">
+                <table id="active_miners" class="table table-hover sortable">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Address</th>
+                            <th class="text-right">Hashrate</th>
+                            <th class="text-right">Rejected Hashrate</th>
+                            <th class="text-right">Predicted Payouts</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="setminers" class="modal fade" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Set My Miners</h4>
+        <section class="panel">
+            <div class="panel-heading">
+                <h4>Status</h4>
             </div>
-            <div class="modal-body clearfix">
-              <p>Add a list of your miners to highlight on the stats page.</p>
-              <p>One address per line:</p>
-              <textarea id="myminers"></textarea>
-              <input id="onlymyminers" name="onlymyminers" type="checkbox" value="0" />
-              <label for="onlymyminers">Display only my miners</label>
-              <button id="setminers" type="button" class="btn btn-primary pull-right" data-dismiss="modal">Set Miners</button>
+            <div class="row">
+                <div class="col-md-4">
+                    <p>Dogecoin</p>
+                    <p id="dogecoin-price"></p>
+                </div>
+                <div class="col-md-4">
+                    <p>Dingocoin</p>
+                    <p id="dingocoin-price"></p>
+                </div>
+                <div class="col-md-4">
+                    <p>Digibyte</p>
+                    <p id="digibyte-price"></p>
+                </div>
             </div>
-          </div>
-        </div>
-      </section>
+            <ul class="list-group status rate_info pull-left mt-3">
+                <li class="list-group-item">Global Pool Hashrate: <span id="global_rate"></span></li>
+                <li class="list-group-item">Local Pool Hashrate: <span id="local_rate"></span></li>
+                <li class="list-group-item">Local Pool Efficiency: <span id="local_efficiency"></span></li>
+                <li class="list-group-item">Current Block Value: <span id="block_value"></span></li>
+            </ul>
+            <ul class="list-group status share_info pull-right mt-3">
+                <li class="list-group-item">Local Shares: <span id="shares"></span></li>
+                <li class="list-group-item">Global Pool Shares: <span id="global_shares"></span></li>
+                <li class="list-group-item">Node Uptime: <span id="uptime"></span></li>
+            </ul>
+        </section>
 
-      <section id="settheme" class="modal fade" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden "true">&times;</button>
-              <h4 class="modal-title">Set Theme</h4>
+        <section class="panel">
+            <div class="panel-heading">
+                <h4>Recent DGB Blocks</h4>
             </div>
-            <div class="modal-body clearfix">
-              <p>Choose a Theme:</p>
-              <ul id="theme-list" class="nav nav-pills nav-stacked"></ul>
-            </div>
-          </div>
-        </div>
-      </section>
+            <ul id="block_list" class="list-group">
+            </ul>
+            <p>View <a href="https://discord.gg/Dogeparty" target="_blank">DOGE/DINGO Payouts on Discord</a></p>
+        </section>
+
     </div>
 
-    <footer class="container">
-      <div class="panel panel-default clearfix">
-        <div class="panel-heading clearfix">
-          <div class="col-sm-12">
-            TripleZen - <a href="https://discord.gg/yGC2cvaVZN">Discord Social / Support Server</a>
-          </div>
-        
+    <footer>
+        <p>&copy; TripleZen. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#setminers">Set Miners</a> |
+            <a href="#" data-bs-toggle="modal" data-bs-target="#settheme">Change Theme</a>
         </div>
-        <div class="panel-body">
-          <div class="col-md-12">
-            Statrum 1 : stratum+tcp://dgb.triplezen.org:5025<br>
-            Worker Name : your_digibyte_address.your_dogecoin_address<br>
-            Password : x
-        </div>
-      </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="js/jquery-dateFormat.min.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <script src="js/bootstrap-sortable.js"></script>
+    <!-- Bootstrap 5 JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Include your existing scripts here -->
 
-    <script src="js/highcharts.js"></script>
-    <script src="js/exporting.js"></script>
-
-    <script src="js/util.js"></script>
-    <script src="js/charts.js"></script>
-    <script src="js/p2pool.js"></script>
-  </body>
+</body>
 
 </html>
