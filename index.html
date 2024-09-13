@@ -210,6 +210,19 @@
                 .catch(error => {
                     console.error('Error fetching data:', error);
                 });
+              // Fetch data from the API
+            fetch(apiUrlLtc)
+                .then(response => response.json())
+                .then(data => {
+                    // Extract Bitcoin price from the API response
+                    const litecoinPrice = data.litecoin.usd;
+
+                    // Display the price on the webpage
+                    document.getElementById('litecoin-price').innerText = `$${litecoinPrice}`;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
         }
 
         // Call the function initially
