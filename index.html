@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico">
 
-    <title>TripleZen DGB DOGE DINGO P2pool</title>
+    <title>TripleZen LTC DOGE DINGO AUS CASH P2pool</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -51,7 +51,7 @@
           <a class="navbar-brand" href="#">TripleZen 
             <span id="currency"></span> (DOGE) (DINGO)
           </a>
-          <p id="currentHostElement" align="right">http://dgb.triplezen.org:5025</p>
+          <p id="currentHostElement" align="right">http://mint.triplezen.org:9327</p>
         </div>
 
         <nav class="navbar-collapse collapse" role="navigation">
@@ -157,6 +157,10 @@
     <p>Digibyte</p>
     <p id="digibyte-price"></p>
 </div>
+<div class="row">
+    <p>Litecoin</p>
+    <p id="litecoin-price"></p>
+</div>
 
     <script>
         // Function to fetch cryptocurrency price
@@ -165,6 +169,7 @@
             const apiUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=dogecoin&vs_currencies=usd';
             const apiUrlDingo = 'https://api.coingecko.com/api/v3/simple/price?ids=dingocoin&vs_currencies=usd';
             const apiUrlDgb = 'https://api.coingecko.com/api/v3/simple/price?ids=digibyte&vs_currencies=usd';
+            const apiUrlLtc = 'https://api.coingecko.com/api/v3/simple/price?ids=litecoin&vs_currencies=usd';
 
             // Fetch data from the API
             fetch(apiUrl)
